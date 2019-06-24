@@ -1,16 +1,31 @@
 import React, { FunctionComponent } from "react";
 import styled from "styled-components";
-import List from "./List";
 
-const tasks = [
-  'abc',
-  'asdas',
-  'dasd',
-  'asdasd',
-  'abasdsadc',
-  'asdsaabc',
-  'fgfgfabc',
-  'fgfgfabc',
+import List from "./List";
+import {ITask} from "../types"
+import { Priority } from "../enums";
+
+const tasks: ITask[] = [
+  {
+    title:"First title",
+    content: "First content",
+    priority: Priority.DEFAULT
+  },
+  {
+    title:"Second title",
+    content: "Second content",
+    priority: Priority.DEFAULT
+  },
+  {
+    title:"Third title",
+    content: "Third content",
+    priority: Priority.DEFAULT
+  },
+  {
+    title:"Fourth title",
+    content: "Fourth content",
+    priority: Priority.DEFAULT
+  }
 ];
 
 const MainContent: FunctionComponent = () => (

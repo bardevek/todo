@@ -1,11 +1,20 @@
 import React, { FunctionComponent } from "react";
 import styled from "styled-components";
 
+import { ITask } from "../types";
+
 interface IProps {
-    task: string
+  task: ITask
 }
 
-const ListItem:FunctionComponent<IProps> = ({task}) => <Item>{task}</Item>;
+const ListItem: FunctionComponent<IProps> = ({ task }) => {
+  return (
+    <Item>
+      <h4>{task.title}</h4>
+      <p>{task.content}</p>
+    </Item>
+  )
+}
 
 const Item = styled.div`
   width: 300px;
@@ -13,6 +22,9 @@ const Item = styled.div`
   height: 200px;
   background-color: #ffffff;
   margin: 30px;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export default ListItem;

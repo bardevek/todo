@@ -1,9 +1,11 @@
 import React, { Fragment, FunctionComponent } from "react";
 import styled from "styled-components";
+
 import ListItem from "./ListItem";
+import { ITask } from "../types";
 
 interface IProps {
-  tasks: string[];
+  tasks: ITask[];
 }
 
 const List: FunctionComponent<IProps> = ({ tasks }) => {
@@ -11,20 +13,9 @@ const List: FunctionComponent<IProps> = ({ tasks }) => {
 
   return (
     <ListContainer>
-      <ListItem task="1" />
-      <ListItem task="1" />
-      <ListItem task="1" />
-      <ListItem task="1" />
-      <ListItem task="1" />
-      <ListItem task="1" />
-      <ListItem task="1" />
-      <ListItem task="1" />
-      <ListItem task="1" />
-      <ListItem task="1" />
-      <ListItem task="1" />
-      <ListItem task="1" />
-      <ListItem task="1" />
-      <ListItem task="1" />
+      {tasks.map(
+        task => <ListItem task={task} />
+      )}
     </ListContainer>
   );
 }
