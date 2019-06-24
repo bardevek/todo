@@ -13,17 +13,19 @@ const tasks = [
   'fgfgfabc',
 ];
 
-const MainContent:FunctionComponent = () => (
-  <MainContentContainer>
-    <List tasks={tasks}/>
-  </MainContentContainer>
+const MainContent: FunctionComponent = () => (
+    <MainContentContainer>
+      <List tasks={tasks} />
+    </MainContentContainer>
+
 );
 
 const MainContentContainer = styled.div`
   position: relative;
-  background-color: #e8e8e8;
   width: 100%;
-  height: 100%;
+  height: 100%
+  min-height: calc(100vh - 150px);
+  background-color: #e8e8e8;
 `;
 
 export default MainContent;

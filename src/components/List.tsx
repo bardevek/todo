@@ -3,36 +3,37 @@ import styled from "styled-components";
 import ListItem from "./ListItem";
 
 interface IProps {
-    tasks: string[];
+  tasks: string[];
 }
 
-const List: FunctionComponent<IProps> = ({tasks}) => {
+const List: FunctionComponent<IProps> = ({ tasks }) => {
 
-console.log(tasks);
 
-    return(
-        <Fragment>
-          <ListRow>
-            <ListItem task="1" />
-          </ListRow>
-          <ListRow>
-            <ListItem task="2" />
-          </ListRow>
-          <ListRow>
-            <ListItem task="3" />
-          </ListRow>
-          <ListRow>
-            <ListItem task="4" />
-          </ListRow>
-        </Fragment>
-      );
+  return (
+    <ListContainer>
+      <ListItem task="1" />
+      <ListItem task="1" />
+      <ListItem task="1" />
+      <ListItem task="1" />
+      <ListItem task="1" />
+      <ListItem task="1" />
+      <ListItem task="1" />
+      <ListItem task="1" />
+      <ListItem task="1" />
+      <ListItem task="1" />
+      <ListItem task="1" />
+      <ListItem task="1" />
+      <ListItem task="1" />
+      <ListItem task="1" />
+    </ListContainer>
+  );
 }
 
 
-const ListRow = styled.div`
-  display: flex;
-  width: 100%;
-  height: 300px;
+const ListContainer = styled.div`
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 export default List;
