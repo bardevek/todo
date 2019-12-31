@@ -1,10 +1,14 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 
-const Header = () => (
+interface IProps {
+  addButtonAction: () => void;
+}
+
+const Header = ({ addButtonAction }: IProps) => (
   <HeaderContainer>
     <HeaderTitle>TODO LIST</HeaderTitle>
-    <AddButton onClick={() => console.log('Klik')}>Add task</AddButton>
+    <AddButton onClick={addButtonAction}>Add task</AddButton>
   </HeaderContainer>
 );
 

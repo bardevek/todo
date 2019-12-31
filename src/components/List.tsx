@@ -9,20 +9,19 @@ interface IProps {
 }
 
 const List: FunctionComponent<IProps> = ({ tasks }) => {
-
-
   return (
     <ListContainer>
-      {tasks.map(
-        task => <ListItem task={task} />
-      )}
+      {/*TODO: add id as a key*/}
+      {tasks.map((task, index) => (
+        <ListItem task={task} key={index} />
+      ))}
     </ListContainer>
   );
-}
-
+};
 
 const ListContainer = styled.div`
-  display:flex;
+  position: relative;
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
 `;
