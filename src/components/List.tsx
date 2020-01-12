@@ -11,9 +11,8 @@ interface IProps {
 const List: FunctionComponent<IProps> = ({ tasks }) => {
   return (
     <ListContainer>
-      {/*TODO: add id as a key*/}
-      {tasks.map((task, index) => (
-        <ListItem task={task} key={index} />
+      {tasks.map(task => (
+        <ListItem task={task} key={task.id} />
       ))}
     </ListContainer>
   );

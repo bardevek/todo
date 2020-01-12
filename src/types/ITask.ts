@@ -1,7 +1,8 @@
 import { Priority } from "../enums";
 
 export interface ITask {
-    title: string;
-    content: string;
-    priority: Priority
+  title: string;
+  content: string;
+  priority: Priority;
+  id: string;
 }

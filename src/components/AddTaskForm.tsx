@@ -4,33 +4,71 @@ import styled from "styled-components";
 import { TextField } from "./Forms/TextField";
 import { TextAreaField } from "./Forms/TextAreaField";
 import { SubmitButton } from "./Forms/SubmitButton";
+import { useState } from "react";
+import { Loader } from "./Loader";
+import { ITask } from "../types";
+import axios from "../axios-conf";
+import { Priority } from "../enums";
 
 interface IProps {
   title?: string;
   onBackdropClick: () => void;
+  reFetchTasks: Function;
 }
 
-const AddTaskForm = ({ onBackdropClick }: IProps) => {
+interface IBackdrop {
+  shouldCoverForm: boolean;
+}
+
+const AddTaskForm = ({ onBackdropClick, reFetchTasks }: IProps) => {
+  const [isLoading, setLoading] = useState(false);
+  const [shouldBackdropCoverForm, setShouldBackdropCoverForm] = useState(false);
+
   return (
     <Container>
       <FormContainer>
         <Formik
-          initialValues={{ title: "" }}
+          initialValues={{ title: "", content: "", id: "" }}
           onSubmit={() => console.log("submit")}
         >
           {({ values }) => {
+            const { title, content, id } = values;
+
+            const task: ITask = {
+              title: title,
+              content: content || "",
+              priority: Priority.DEFAULT,
+              id: id || ""
+            };
+
+            const createTask = async (task: ITask) => {
+              setShouldBackdropCoverForm(true);
+              setLoading(true);
+
+              await axios.post("/tasks.json", task);
+
+              setLoading(false);
+              setShouldBackdropCoverForm(false);
+              onBackdropClick();
+              reFetchTasks();
+            };
+
             return (
               <Frame>
                 <Title>Add new note</Title>
                 <TextField name="title" label="Title" />
                 <TextAreaField name="content" label="Content" />
-                <SubmitButton values={values} />
+                <SubmitButton onClick={createTask} task={task} />
+                {isLoading && <Loader />}
               </Frame>
             );
           }}
         </Formik>
       </FormContainer>
-      <Backdrop onClick={onBackdropClick} />
+      <Backdrop
+        onClick={onBackdropClick}
+        shouldCoverForm={shouldBackdropCoverForm}
+      />
     </Container>
   );
 };
@@ -50,7 +88,7 @@ const Backdrop = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
-  z-index: 1;
+  z-index: ${(props: IBackdrop) => (props.shouldCoverForm ? 9999 : 1)};
 `;
 
 const FormContainer = styled.div`
